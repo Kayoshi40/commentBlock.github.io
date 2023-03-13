@@ -1,0 +1,29 @@
+@import "null-style.scss";
+
+.comment {
+
+    background-color:green;
+    width: 1200px;
+    margin: auto;
+    height: 100%;
+
+    &__container{
+
+        background-color:blue;
+        width: 1000px;
+        margin: auto;
+        height: 100%;
+
+        &__data{
+            background-color: brown;
+            height: 25%;
+            width: 100%;
+        }
+
+        &__comments{
+            background-color: yellow;
+            height: 75%;
+            width: 100%;
+        }
+    }
+}
