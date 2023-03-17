@@ -5,6 +5,8 @@
 }
 
 *, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -69,25 +71,27 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
+body {
+  background-color: #F5F5DC;
+}
+
 .comment {
-  background-color: green;
-  width: 1200px;
+  border: 1px solid grey;
+  background-color: #FFF8DC;
+  width: 75%;
   margin: auto;
   height: 100%;
 }
 .comment__container {
-  background-color: blue;
-  width: 1000px;
   margin: auto;
   height: 100%;
 }
 .comment__container__data {
-  background-color: brown;
   height: 25%;
   width: 100%;
+  border-bottom: 1px solid gray;
 }
 .comment__container__comments {
-  background-color: yellow;
   height: 75%;
   width: 100%;
 }
