@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="css/style.css">
-        <meta name="viewport" content="width=device-width">
-    </head>
-    <body>
-    
 
-        <div class="comment">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width">
+</head>
 
-            <div class="comment__container">
+<body>
 
-                <div class="comment__container__data">
-                    <form action="">
-                    <input type="text" name="Имя">
-                    <input type="data">
-                    <input type="">
-                    </form>
-                </div>
 
-                <div class="comment__container__comments">
+    <div class="comment">
 
-                </div>
+        <div class="comment__container">
+
+            <div class="comment__container__data">
+                <form class="comment__container__data__content" action="">
+                    <input class="comment__container__data__content__name" type="text" name="userName" placeholder="Имя" required>               
+                    <input class="comment__container__data__content__date" type="date" name="userDate">
+                    <button class="comment__container__data__content__button buttonSend">Отправить</button>
+                    <textarea class="comment__container__data__content__text" type="text" name="userText" placeholder="Введите комментарий" required></textarea>
+                </form>
             </div>
 
+            <div class="comment__container__comments">
+
+                <div class="comment__container__comments__content" >
+                    <p class="comment__container__comments__content__userName">
+                        
+                    </p>
+                    <p class="comment__container__comments__content__comment">
+                        
+                    </p>
+                    <p class="comment__container__comments__content__date">
+                        
+                    </p>
+                    <form class="comment__container__comments__content__like" action="">
+                        <button class="buttonLike"><img class="like" src="image/like2.png" alt="Иконка лайка"></button>
+                    </form>
+                    <form class="comment__container__comments__content__trash" action="">
+                        <button class="buttonDelete"><img class="trash" src="" alt="Иконка удаления"></button>
+                    </form>
+
+                    
+                </div>
+            </div>
         </div>
 
+    </div>
 
-    </body>
+
+    <script src="script/script.js"></script>
+
+</body>
+
 </html>

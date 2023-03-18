@@ -72,13 +72,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background-color: #F5F5DC;
+  background-color: #A2A2A0;
+}
+
+.buttonSend {
+  background-color: #A2A2A0;
+  color: black;
+}
+
+input {
+  background-color: #A2A2A0;
+  color: black;
+}
+
+textarea {
+  background-color: #A2A2A0;
+  color: black;
+}
+
+.like {
+  background-color: #E7E7E1;
+  width: 20px;
+  height: 20px;
+  filter: black;
 }
 
 .comment {
   border: 1px solid grey;
-  background-color: #FFF8DC;
-  width: 75%;
+  background-color: #E7E7E1;
+  width: 90%;
   margin: auto;
   height: 100%;
 }
@@ -90,6 +112,43 @@ body {
   height: 25%;
   width: 100%;
   border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: center;
+}
+.comment__container__data__content {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-top: 1%;
+}
+.comment__container__data__content__name {
+  display: block;
+  width: 20%;
+  max-height: 20%;
+  margin-right: 4%;
+}
+.comment__container__data__content__date {
+  display: block;
+  max-height: 20%;
+}
+.comment__container__data__content__button {
+  display: block;
+  font-size: 16px;
+  width: 150px;
+  max-height: 20%;
+  margin-left: auto;
+}
+@media (max-width: 430px) {
+  .comment__container__data__content__button {
+    width: 80px;
+  }
+}
+.comment__container__data__content__text {
+  display: block;
+  width: 100%;
+  margin-bottom: 1%;
 }
 .comment__container__comments {
   height: 75%;
