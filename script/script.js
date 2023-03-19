@@ -2,106 +2,152 @@ let mysubmit = document.querySelector('.comment__container__data__content__text'
 let mylike = document.querySelectorAll('.buttonLike');
 let commentsContent = document.querySelector('.comment__container__comments__content')
 let myForm = document.forms.data;
-
-let userDate = myForm.elements.userDate;
-let userText = myForm.elements.userText;
 let submitButton = myForm.elements.buttonSend;
 
 
 let counter = 0;
-// let asdf = document.querySelector('.buttonLike');
-// let fsad = asdf.getAttribute('id');
-// alert(asdf.getAttribute('id'));
-
-// mylike.innerHTML = `<img class="like" src="./image/like2.png" alt="Иконка лайка" id="id${counter}"></img>`;
-// let myike = document.querySelector('.like');
-// alert(myike.getAttribute('id'))
-
-
-// var attrs = asdf.attributes; // (4) можно получить коллекцию атрибутов
-// for (var i = 0; i < attrs.length; i++) {
-//   alert( attrs[i].name + " = " + attrs[i].value );
-// }
 
 function sorting() {
     
     
-    for (let elem of document.querySelector('.comment__container__comments')) {
-        let dateElem = elem.querySelector('.comment__container__comments__content__date');
-        let dateSibling = elem.nextElementSibling.querySelector('.comment__container__comments__content__date');
-
-        if(dateElem.innerHTML < dateSibling.innerHTML){
-            elem.nextElementSibling.after(elem);
+    for (let i = document.querySelector('.comment__container__comments').children.length; i == 0; i--) {
+        let elem = document.querySelector('.comment__container__comments').children[i];
+        let nextElem = document.querySelector('.comment__container__comments').children[i - 1];
+        alert (elem.querySelector('.invisible').innerHTML);
+        if (elem.querySelector('.invisible').innerHTML > nextElem.querySelector('.invisible').innerHTML){
+            document.querySelector('.comment__container__comments').insertBefore(elem, nextElem);
         }
     }
 } 
 
-function deleteContent(elem){
+function deleteContent(id1,id2){
+    document.getElementById(`${id2}`).onclick = function(){
+        document.getElementById(id1).remove();
+    }
 
-    elem.parentElement.remove();
 }
 
-function like(id) {
-
-    let img = document.getElementById(id)
-    let imgSrc = img.getAttribute('src');
-    if(imgSrc === './image/like.png'){
-        img.setAttribute('src', './image/like2.png');
+function getLike(id){
+    document.getElementById(`${id}`).onclick = function(){
+        let imgSrc = document.getElementById(`${id}`).src;
+        if ( imgSrc.includes('image/like.png')){
+            document.getElementById(`${id}`).src = './image/like2.png'
+        }
+        else{
+            document.getElementById(`${id}`).src = './image/like.png'
+        }
     }
+}
+
+function autoForm(value)
+{
+    if (value < 10)
+    {
+        value='0'+value;
+    }
+    return value;
+}
+
+function dateData(date){
+
+    if (date.value == 0 || date.value == null || date.value == undefined){
+        date = new Date(Date.now());
+        return date.getTime() / 1000
+
+    }
+
     else{
-        img.setAttribute('src', './image/like.png');
+
+        date = new Date(Date.parse(date.value))
+        return date.getTime() / 1000
+    }
+}
+
+function dateTime(date)
+{
+    if (date.value == 0 || date.value == null || date.value == undefined){
+        date = new Date(Date.now());
+        let hours = autoForm(date.getHours());
+        let minutes = autoForm(date.getMinutes());
+        return "Сегодня " +hours+':'+minutes;
+
     }
 
+    else{
+
+        date = new Date(Date.parse(date.value))
+        dateNow = new Date(Date.now());
+
+        if(date.setHours(0,0,0,0) == dateNow.setHours(0,0,0,0)){
+            
+            dateNow = new Date(Date.now());
+
+            let hours = autoForm(dateNow.getHours());
+            let minutes = autoForm(dateNow.getMinutes());
+            return "Сегодня " +hours+':'+minutes;
+        }
+        else if(date.setHours(0,0,0,0) - dateNow.setHours(0,0,0,0) == 86400000){
+
+            dateNow = new Date(Date.now());
+
+            let hours = autoForm(dateNow.getHours());
+            let minutes = autoForm(dateNow.getMinutes());
+            return "Вчера " +hours+':'+minutes;
+        }
+        else{
+
+            dateNow = new Date(Date.now());
+
+            var day = autoForm(date.getDate());
+            var month = autoForm(date.getMonth()+1);
+            var year = date.getFullYear();
+            var hours = autoForm(dateNow.getHours());
+            var minutes = autoForm(dateNow.getMinutes());
+
+            return day+"."+month+"."+year+" "+hours+":"+minutes;
+        }
+    }
 }
 
 
 function createComment(name, date, comment) {
 
-    date = date.getAttribute('value');
-
-    let currentDate = new Date(date)
-    if (currentDate == null){
-        currentDate = new Date()
-    }
-    else{
-        currentDate.setHours(new Date().getTime());
-    }
-
-    let dateNull = currentDate.setHours(0,0,0,0);
-    let NewDateNull = (new Date()).setHours(0,0,0,0);
-    
-    if ((NewDateNull - dateNull) == 0){
-
-        currentDate = 'Сегодня ' + currentDate.getHours() + currentDate.getMinutes(); 
-    }
-    else if((NewDateNull - dateNull) == 86400000){
-        currentDate = 'Вчера ' + currentDate.getHours() + currentDate.getMinutes();
-    }
-
     
     let newContent = commentsContent.cloneNode(true);
-    newContent.getAttribute('id',`content${counter}`)
+    newContent.setAttribute('id',`content${counter}`);
+    let idContent = newContent.id;
+    
 
-    let userName1 = newContent.querySelector('comment__container__comments__content__userName');
-    let userDate = newContent.querySelector('comment__container__comments__content__date');
-    let userComment = newContent.querySelector('comment__container__comments__content__comment');
-    let like = newContent.querySelector('buttonLike');
-    let likeImg = newContent.querySelector('like');
-    let trash = newContent.querySelector('buttonTrash');
+    let userName = newContent.querySelector('.comment__container__comments__content__userName');
+    let userDate = newContent.querySelector('.comment__container__comments__content__date');
+    let userComment = newContent.querySelector('.comment__container__comments__content__comment');
+    let likeImg = newContent.querySelector('.like');
+    let trashButton = newContent.querySelector('.buttonDelete');
+    let dateInv = newContent.querySelector('.invisible')
 
-    userName1.innerHTML = name;
+    // newContent.appendChild(trashButton);
+    document.querySelector('.comment__container__comments').appendChild(newContent)
 
-    userDate.innerHTML = currentDate.toString;
+
+    userName.innerHTML = name.value;
+
+    userDate.innerHTML = dateTime(date);
+
+    dateInv.innerHTML = dateData(date);
 
     userComment.innerHTML = comment.value;
 
     likeId = 'like' + counter;
  
-    likeImg.getAttribute('id', likeId);
+    likeImg.setAttribute('id', likeId);
 
-    trash.onclick = deleteContent(trash);
-    
-    like.onclick = like(likeId)
+    trashId = 'trash' + counter;
+
+    trashButton.setAttribute('id', trashId)
+
+    deleteContent(idContent, trashId);
+
+    getLike(likeId);
 
     counter++
 
@@ -115,7 +161,6 @@ mysubmit.onkeyup = function(e){
         // }
         // else{
 
-            document.addEventListener('submit', createComment(userName, userDate, userText));
             document.querySelector('.comment__container__data__content').submit() ;
         // }
 
@@ -129,17 +174,19 @@ submitButton.onclick = function(){
     //     userText.reportValidity();
     // }
     // else{
-
+        
         let userDate = myForm.elements.userDate;
-        let userName = document.querySelector('.invisible').innerHTML;
+        let userName = myForm.elements.userName;
         let userText = myForm.elements.userText;
         createComment(userName, userDate, userText);
+        sorting();
         // document.addEventListener('submit', createComment(userName, userDate, userText));
         // myForm.submit();
     // }
     return true;
 
 }
+
 
 
 

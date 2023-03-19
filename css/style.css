@@ -94,7 +94,12 @@ textarea {
   background-color: #E7E7E1;
   width: 20px;
   height: 20px;
-  filter: black;
+}
+
+.trash {
+  background-color: #E7E7E1;
+  width: 20px;
+  height: 20px;
 }
 
 .comment {
@@ -153,4 +158,8 @@ textarea {
 .comment__container__comments {
   height: 75%;
   width: 100%;
+}
+.comment__container__comments :first-child {
+  position: fixed;
+  visibility: hidden;
 }

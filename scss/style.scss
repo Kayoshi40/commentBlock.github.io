@@ -29,7 +29,12 @@ textarea{
     background-color: $color2;
     width: 20px;
     height: 20px;
-    filter: black;
+}
+.trash{
+
+    background-color: $color2;
+    width: 20px;
+    height: 20px;
 }
 
 .comment {
@@ -93,11 +98,13 @@ textarea{
 
         &__comments{
 
+            :first-child{
+                position: fixed;
+                visibility: hidden;
+            }
+
             height: 75%;
             width: 100%;
         }
     }
-}
-.invisible{
-    position: fixed;
 }
