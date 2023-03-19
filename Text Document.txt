@@ -1,0 +1,114 @@
+function sorting() {
+    
+    
+    for (let elem of document.querySelector('.comment__container__comments')) {
+        let dateElem = elem.querySelector('.comment__container__comments__content__date');
+        let dateSibling = elem.nextElementSibling.querySelector('.comment__container__comments__content__date');
+
+        if(dateElem.innerHTML < dateSibling.innerHTML){
+            elem.nextElementSibling.after(elem);
+        }
+    }
+} 
+
+function deleteContent(elem){
+
+    elem.parentElement.remove();
+};
+
+function like(id) {
+
+    let img = document.getElementById(id)
+    let imgSrc = img.getAttribute('src');
+    if(imgSrc === './image/like.png'){
+        img.setAttribute('src', './image/like2.png');
+    }
+    else{
+        img.setAttribute('src', './image/like.png');
+    }
+
+};
+
+
+function createComment(name, date, comment) {
+
+
+    let currentDate = new Date(date)
+    if (currentDate == null){
+        currentDate = new Date()
+    }
+    else{
+        currentDate.setHours(new Date().getTime());
+    }
+
+    let dateNull = currentDate.setHours(0,0,0,0);
+    let NewDateNull = (new Date()).setHours(0,0,0,0);
+    
+    if ((NewDateNull - dateNull) == 0){
+
+        currentDate = 'Сегодня ' + currentDate.getHours() + currentDate.getMinutes(); 
+    }
+    else if((NewDateNull - dateNull) == 86400000){
+        currentDate = 'Вчера ' + currentDate.getHours() + currentDate.getMinutes();
+    }
+
+    let newContent = commentsContent.cloneNode(true);
+    newContent.setAttribute('id',`content${counter}`)
+
+    let userName = newContent.querySelector('comment__container__comments__content__userName');
+    let userDate = newContent.querySelector('comment__container__comments__content__date');
+    let userComment = newContent.querySelector('comment__container__comments__content__comment');
+    let like = newContent.querySelector('buttonLike');
+    let likeImg = newContent.querySelector('like');
+    let trash = newContent.querySelector('buttonTrash');
+
+    userName.innerHTML = name;
+
+    userDate.innerHTML = currentDate;
+
+    userComment.innerHTML = comment;
+
+    likeId = 'like' + counter;
+ 
+    likeImg.setAttribute('id', likeId);
+
+    trash.onclick = deleteContent(trash);
+    
+    like.onclick = like(likeId)
+
+    document.commentContainer.prepend(newContent)
+
+    counter++
+
+}
+
+mysubmit.onkeyup = function(e){
+    if (e.keyCode === 13 && !e.ctrlKey) {
+        if(!userName.checkValidity() && !userText.checkValidity()){
+            userName.reportValidity();
+            userText.reportValidity();
+        }
+        else{
+            createComment(userName, userDate, userText);
+            sorting()
+            
+
+        }
+
+    }
+    return true;
+}
+
+submitButton.onclick = function(){
+    if(!userName.checkValidity() && !userText.checkValidity()){
+        userName.reportValidity();
+        userText.reportValidity();
+    }
+    else{
+    if(1){
+
+        createComment(userName, userDate, userText)
+        sorting()
+    }
+    }
+    return true;

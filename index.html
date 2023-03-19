@@ -14,28 +14,29 @@
         <div class="comment__container">
 
             <div class="comment__container__data">
-                <form class="comment__container__data__content" action="">
-                    <input class="comment__container__data__content__name" type="text" name="userName" placeholder="Имя" required>               
+                <form class="comment__container__data__content" action="" method="post" name='data'>
+                    <input class="comment__container__data__content__name" type="text" name="userName" placeholder="Имя" required >               
                     <input class="comment__container__data__content__date" type="date" name="userDate">
-                    <button class="comment__container__data__content__button buttonSend">Отправить</button>
+                    <button type="button" class="comment__container__data__content__button buttonSend" name="buttonSend" oninput="info1.innerHTML=this.value">Отправить</button>
                     <textarea class="comment__container__data__content__text" type="text" name="userText" placeholder="Введите комментарий" required></textarea>
                 </form>
             </div>
-
+            <p class="invisible" id="info1"></p>
             <div class="comment__container__comments">
 
                 <div class="comment__container__comments__content" >
+
                     <p class="comment__container__comments__content__userName">
                         
                     </p>
+                    <time class="comment__container__comments__content__date">
+                        
+                    </time>
                     <p class="comment__container__comments__content__comment">
                         
                     </p>
-                    <p class="comment__container__comments__content__date">
-                        
-                    </p>
                     <form class="comment__container__comments__content__like" action="">
-                        <button class="buttonLike"><img class="like" src="image/like2.png" alt="Иконка лайка"></button>
+                        <button class="buttonLike"><img class="like" src="./image/like2.png" alt="Иконка лайка"></button>
                     </form>
                     <form class="comment__container__comments__content__trash" action="">
                         <button class="buttonDelete"><img class="trash" src="" alt="Иконка удаления"></button>
