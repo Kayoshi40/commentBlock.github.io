@@ -7,45 +7,44 @@
 </head>
 
 <body>
-
+    <div hidden class="sample">
+        <div class="comment__container__comments__content" >
+            <p class="invisible" id="info1">0</p>
+            <p class="comment__container__comments__content__userName">
+        
+            </p>
+            <p class="comment__container__comments__content__date">
+        
+            </p>
+            <p class="comment__container__comments__content__comment">
+        
+            </p>
+            <form class="comment__container__comments__content__like" action="">
+                <button type="button" class="buttonLike"><img class="like" src="./image/like.png" alt="Иконка лайка"></button>
+            </form>
+            <form class="comment__container__comments__content__trash" action="">
+                <button type="button" class="buttonDelete"><img class="trash" src="./image/trash.png" alt="Иконка удаления"></button>
+            </form>
+        
+        </div>
+    </div>
 
     <div class="comment">
 
         <div class="comment__container">
 
             <div class="comment__container__data">
-                <form class="comment__container__data__content" action="" method="post" name='data'>
+                <form  class="comment__container__data__content" action="" method="post" name='data'>
                     <input class="comment__container__data__content__name" type="text" name="userName" placeholder="Имя" required >               
                     <input class="comment__container__data__content__date" type="date" name="userDate">
-                    <button type="button" class="comment__container__data__content__button buttonSend" name="buttonSend" oninput="info1.innerHTML=this.value">Отправить</button>
+                    <button onclick="submitFunc(); return false" class="comment__container__data__content__button buttonSend" name="buttonSend" oninput="info1.innerHTML=this.value">Отправить</button>
                     <textarea class="comment__container__data__content__text" type="text" name="userText" placeholder="Введите комментарий" required></textarea>
                 </form>
             </div>
             
             <div class="comment__container__comments">
 
-                <div class="comment__container__comments__content" >
 
-                    <p class="invisible" id="info1">22234872396701848518643905910457562726</p>
-
-                    <p class="comment__container__comments__content__userName">
-                        
-                    </p>
-                    <time class="comment__container__comments__content__date">
-                        
-                    </time>
-                    <p class="comment__container__comments__content__comment">
-                        
-                    </p>
-                    <form class="comment__container__comments__content__like" action="">
-                        <button type="button" class="buttonLike"><img class="like" src="./image/like.png" alt="Иконка лайка"></button>
-                    </form>
-                    <form class="comment__container__comments__content__trash" action="">
-                        <button type="button" class="buttonDelete"><img class="trash" src="./image/trash.png" alt="Иконка удаления"></button>
-                    </form>
-
-                    
-                </div>
             </div>
         </div>
 
@@ -57,3 +56,4 @@
 </body>
 
 </html>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eos rerum recusandae quae ex adipisci omnis! Fugit officiis a non hic ipsum, quas eum consequuntur, magnam harum, aperiam expedita blanditiis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusamus officiis incidunt animi, magni cum labore nobis expedita voluptates, ex facilis quo reiciendis quos dolor error eligendi ratione suscipit earum.

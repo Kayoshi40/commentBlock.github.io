@@ -1,24 +1,30 @@
+
+
 let mysubmit = document.querySelector('.comment__container__data__content__text');
 let mylike = document.querySelectorAll('.buttonLike');
 let commentsContent = document.querySelector('.comment__container__comments__content')
 let myForm = document.forms.data;
 let submitButton = myForm.elements.buttonSend;
+let list = document.querySelector('.comment__container__comments')
 
 
 let counter = 0;
 
-function sorting() {
-    
-    
-    for (let i = document.querySelector('.comment__container__comments').children.length; i == 0; i--) {
-        let elem = document.querySelector('.comment__container__comments').children[i];
-        let nextElem = document.querySelector('.comment__container__comments').children[i - 1];
-        alert (elem.querySelector('.invisible').innerHTML);
-        if (elem.querySelector('.invisible').innerHTML > nextElem.querySelector('.invisible').innerHTML){
-            document.querySelector('.comment__container__comments').insertBefore(elem, nextElem);
-        }
-    }
-} 
+
+let sortList = (list) => {
+
+    let listElem = Array.prototype.slice.call(list.children);
+
+    let sortedListElem = listElem.sort(function(a, b) {
+        return (+b.querySelector('.invisible').innerHTML) - (+a.querySelector('.invisible').innerHTML);
+    })
+
+    list.innerHTML = '';
+    sortedListElem.forEach(function(el) {
+        list.appendChild(el)
+    });
+}
+
 
 function deleteContent(id1,id2){
     document.getElementById(`${id2}`).onclick = function(){
@@ -125,7 +131,6 @@ function createComment(name, date, comment) {
     let trashButton = newContent.querySelector('.buttonDelete');
     let dateInv = newContent.querySelector('.invisible')
 
-    // newContent.appendChild(trashButton);
     document.querySelector('.comment__container__comments').appendChild(newContent)
 
 
@@ -137,11 +142,11 @@ function createComment(name, date, comment) {
 
     userComment.innerHTML = comment.value;
 
-    likeId = 'like' + counter;
+    let likeId = 'like' + counter;
  
     likeImg.setAttribute('id', likeId);
 
-    trashId = 'trash' + counter;
+    let trashId = 'trash' + counter;
 
     trashButton.setAttribute('id', trashId)
 
@@ -149,43 +154,46 @@ function createComment(name, date, comment) {
 
     getLike(likeId);
 
+    sortList(list);
+
     counter++
 
 }
 
 mysubmit.onkeyup = function(e){
     if (e.keyCode === 13 && !e.ctrlKey) {
-        // if(!userName.checkValidity() && !userText.checkValidity()){
-        //     userName.reportValidity();
-        //     userText.reportValidity();
-        // }
-        // else{
-
-            document.querySelector('.comment__container__data__content').submit() ;
-        // }
+        if (mysubmit.value.trim() == ''){
+            mysubmit.value = '';
+            mysubmit.reportValidity();
+        }
+        else{
+            submitFunc();
+            mysubmit.value = '';
+        }
 
     }
-    return true;
+    return false;
 }
 
-submitButton.onclick = function(){
-    // if(!userName.checkValidity() && !userText.checkValidity()){
-    //     userName.reportValidity();
-    //     userText.reportValidity();
-    // }
-    // else{
-        
-        let userDate = myForm.elements.userDate;
-        let userName = myForm.elements.userName;
-        let userText = myForm.elements.userText;
+let submitFunc = function(){
+    let userDate = myForm.elements.userDate;
+    let userName = myForm.elements.userName;
+    let userText = myForm.elements.userText;
+    if(!userName.checkValidity() || !userText.checkValidity()){
+        userName.reportValidity();
+        userText.reportValidity();
+    }
+    else{
         createComment(userName, userDate, userText);
-        sorting();
-        // document.addEventListener('submit', createComment(userName, userDate, userText));
-        // myForm.submit();
-    // }
-    return true;
+        return false;
+    }
+    return false;
 
 }
+
+
+
+
 
 
 

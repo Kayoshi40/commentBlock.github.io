@@ -131,17 +131,21 @@ textarea {
 .comment__container__data__content__name {
   display: block;
   width: 20%;
+  min-height: 20%;
   max-height: 20%;
   margin-right: 4%;
+  margin-bottom: 2%;
 }
 .comment__container__data__content__date {
   display: block;
+  min-height: 20%;
   max-height: 20%;
 }
 .comment__container__data__content__button {
   display: block;
   font-size: 16px;
   width: 150px;
+  min-height: 20%;
   max-height: 20%;
   margin-left: auto;
 }
@@ -152,14 +156,58 @@ textarea {
 }
 .comment__container__data__content__text {
   display: block;
-  width: 100%;
-  margin-bottom: 1%;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 50%;
+  min-height: 50%;
+  margin-bottom: 3%;
 }
 .comment__container__comments {
-  height: 75%;
-  width: 100%;
+  height: 70%;
+  width: 90%;
+  overflow: auto;
+  margin: auto;
+  margin-top: 1%;
 }
-.comment__container__comments :first-child {
-  position: fixed;
-  visibility: hidden;
+.comment__container__comments__content {
+  margin-bottom: 3%;
+  min-height: 13%;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #A2A2A0;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.comment__container__comments__content__userName {
+  font-weight: 700;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+.comment__container__comments__content__date {
+  padding-top: 1px;
+  height: 14px;
+  font-size: 2px;
+  font-weight: 200;
+  margin-bottom: 1%;
+  margin-right: auto;
+  font-size: 12px;
+}
+.comment__container__comments__content__comment {
+  width: 100%;
+  margin-right: auto;
+  margin-bottom: 1%;
+}
+.comment__container__comments__content__trash {
+  display: block;
+}
+.comment__container__comments__content__like {
+  display: block;
+}
+
+.invisible {
+  display: none;
+}
+
+.sample[hidden] {
+  display: none;
 }
