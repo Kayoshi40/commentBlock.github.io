@@ -185,6 +185,7 @@ let submitFunc = function(){
     }
     else{
         createComment(userName, userDate, userText);
+        mysubmit.value = '';
         return false;
     }
     return false;
